@@ -16,6 +16,7 @@ class ProductListScreen extends StatefulWidget {
 
 class _ProductListScreenState extends State<ProductListScreen> {
   List<Product> productList = [];
+  bool getProductListInProgress=false;
 
   @override
   void initState() {
@@ -29,53 +30,56 @@ class _ProductListScreenState extends State<ProductListScreen> {
       appBar: AppBar(
         title: const Text("CRUD app"),
       ),
-      body: ListView.builder(
-        itemCount: productList.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading:  CircleAvatar(
-              backgroundImage: NetworkImage(productList[index].image ?? ""),
-            ),
-            title:  Text(productList[index].productName ?? "Unkown"),
-            subtitle:  Wrap(
-              spacing: 16,
-              children: [
-                Text(productList[index].productCode ?? ""),
-                Text(productList[index].totalPrice ?? ""),
-                Text(productList[index].unitPrice ?? ""),
-                Text(productList[index].quantity ?? ""),
-                Text("Total Prize")
-              ],
-            ),
-            trailing: PopupMenuButton<PopupMenuType>(
-              onSelected: onTapPopUpMenuButton,
-              itemBuilder: (context) => [
-                const PopupMenuItem(
-                  value: PopupMenuType.edit,
-                  child: Row(
-                    children: [
-                      Icon(Icons.edit),
-                      SizedBox(
-                        width: 8
-                      ),
-                      Text("Edit")
-                    ],
+      body: Visibility(
+        visible: getProductListInProgress==false,
+        replacement: const Center(
+            child: CircularProgressIndicator()),
+        child: ListView.builder(
+          itemCount: productList.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(productList[index].image ?? ""),
+              ),
+              title: Text(productList[index].productName ?? "Unkown"),
+              subtitle: Wrap(
+                spacing: 16,
+                children: [
+                  Text(productList[index].productCode ?? ""),
+                  //Text(productList[index].totalPrice ?? ""),
+                  Text(productList[index].unitPrice ?? ""),
+                  Text(productList[index].quantity ?? ""),
+                  Text(productList[index].totalPrice ?? "")
+                ],
+              ),
+              trailing: PopupMenuButton<PopupMenuType>(
+                onSelected: onTapPopUpMenuButton,
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: PopupMenuType.edit,
+                    child: Row(
+                      children: [
+                        Icon(Icons.edit),
+                        SizedBox(width: 8),
+                        Text("Edit")
+                      ],
+                    ),
                   ),
-                ),
-                const PopupMenuItem(
-                  value: PopupMenuType.delete,
-                  child: Row(
-                    children: [
-                      Icon(Icons.delete),
-                      SizedBox(width: 8),
-                      Text("Delete")
-                    ],
+                  const PopupMenuItem(
+                    value: PopupMenuType.delete,
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete),
+                        SizedBox(width: 8),
+                        Text("Delete")
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        },
+                ],
+              ),
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
@@ -131,6 +135,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
   }
 
   Future<void> getProductListFromApi() async {
+    getProductListInProgress=true;
+    setState(() {
+
+    });
     Uri uri = Uri.parse("https://crud.teamrabbil.com/api/v1/ReadProduct");
     Response response = await get(uri);
     print(response);
@@ -153,5 +161,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
         setState(() {});
       }
     }
+    getProductListInProgress=false;
+    setState(() {
+
+    });
   }
 }

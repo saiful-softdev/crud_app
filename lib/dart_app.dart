@@ -10,7 +10,8 @@ class CRUDapp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.grey, centerTitle: true),
+              backgroundColor: Colors.grey, centerTitle: true,
+              titleTextStyle: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.bold)),
           inputDecorationTheme: const InputDecorationTheme(
               border: OutlineInputBorder(),
               errorBorder: OutlineInputBorder(),
