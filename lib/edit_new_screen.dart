@@ -15,6 +15,7 @@ class _EditNewScreenState extends State<EditNewScreen> {
   final TextEditingController _quantityController = TextEditingController();
   final TextEditingController _totalPrizeController = TextEditingController();
   final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,8 @@ class _EditNewScreenState extends State<EditNewScreen> {
                 TextFormField(
                   controller: _nameController,
                   decoration: const InputDecoration(
-                      hintText: "Product Name", labelText: "Enter Product Name"),
+                      hintText: "Product Name",
+                      labelText: "Enter Product Name"),
                   validator: (String? value) {
                     if (value?.trim().isEmpty ?? true) {
                       return "Enter Product Name";
@@ -45,7 +47,8 @@ class _EditNewScreenState extends State<EditNewScreen> {
                 TextFormField(
                   controller: _codeController,
                   decoration: const InputDecoration(
-                      hintText: "Product Code", labelText: "Enter Product Code"),
+                      hintText: "Product Code",
+                      labelText: "Enter Product Code"),
                   validator: (String? value) {
                     if (value?.trim().isEmpty ?? true) {
                       return "Enter product Code";
@@ -73,7 +76,8 @@ class _EditNewScreenState extends State<EditNewScreen> {
                 TextFormField(
                   controller: _unitPrizeController,
                   decoration: const InputDecoration(
-                      hintText: "Unit Prize", labelText: "Write Per Unit Prize"),
+                      hintText: "Unit Prize",
+                      labelText: "Write Per Unit Prize"),
                   validator: (String? value) {
                     if (value?.trim().isEmpty ?? true) {
                       return "Enter Unit Prize";
@@ -102,27 +106,24 @@ class _EditNewScreenState extends State<EditNewScreen> {
                     controller: _totalPrizeController,
                     decoration: const InputDecoration(
                         hintText: "Total prize", labelText: "Total prize"),
-                    validator: (String? value){
-                      if(value!.isEmpty){
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
                         return "Total prize ";
-
                       }
                       return null;
-                    }
-
-                ),
-
-
+                    }),
                 const SizedBox(
                   height: 8,
                 ),
                 SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          if (_keyForm.currentState!.validate()) ;
-                        },
-                        child: const Text("Update")))
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_keyForm.currentState!.validate()) ;
+                    },
+                    child: const Text("Update"),
+                  ),
+                )
               ],
             ),
           ),
@@ -130,8 +131,9 @@ class _EditNewScreenState extends State<EditNewScreen> {
       ),
     );
   }
-  String? textValidator(String?value){
-    if(value!.isEmpty){
+
+  String? textValidator(String? value) {
+    if (value!.isEmpty) {
       return value;
     }
     return null;

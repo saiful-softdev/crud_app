@@ -9,30 +9,22 @@ class CRUDapp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.amberAccent,
-          centerTitle: true
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          border: OutlineInputBorder(),
-          errorBorder: OutlineInputBorder(),
-          enabledBorder: OutlineInputBorder(),
-          focusedBorder: OutlineInputBorder(),
-          disabledBorder: OutlineInputBorder()
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.amberAccent,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(vertical: 22),
-            textStyle: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w200
-            )
-          )
-        )
-      ),
-home: const ProductListScreen(),
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.grey, centerTitle: true),
+          inputDecorationTheme: const InputDecorationTheme(
+              border: OutlineInputBorder(),
+              errorBorder: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(),
+              focusedBorder: OutlineInputBorder(),
+              disabledBorder: OutlineInputBorder()),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amberAccent,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 22),
+                  textStyle: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.w200)))),
+      home: const ProductListScreen(),
     );
   }
 }
